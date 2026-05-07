@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agents-api"
+version = "0.1.0"
+description = "Agentic AI FastAPI microservice built on top of ai-service-kit."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Mani" }
+]
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pydantic-settings",
+    "python-dotenv",
+    "httpx",
+    "numpy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "httpx",
+]
+aws = ["boto3>=1.26.0"]
+azure = ["applicationinsights>=0.11.0"] 
+gcp = ["google-cloud-logging>=3.0.0"]
+datadog = ["datadog>=0.44.0"]
+all-cloud = [
+    "boto3>=1.26.0",
+    "applicationinsights>=0.11.0",
+    "google-cloud-logging>=3.0.0", 
+    "datadog>=0.44.0"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

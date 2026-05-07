@@ -1,0 +1,17 @@
+-e ../ai-service-kit
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+httpx
+numpy
+pytest
+openai
+
+# Cloud logging providers (optional - install as needed for production)
+# For AWS CloudWatch: pip install boto3>=1.26.0
+# For Azure Monitor: pip install applicationinsights>=0.11.0
+# For Google Cloud: pip install google-cloud-logging>=3.0.0
+# For Datadog: pip install datadog>=0.44.0
+# For all providers: pip install boto3>=1.26.0 applicationinsights>=0.11.0 google-cloud-logging>=3.0.0 datadog>=0.44.0
