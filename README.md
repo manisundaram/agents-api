@@ -56,11 +56,11 @@
 
 ### Service Map
 
-| Service | Port | Role |
-|---------|------|------|
-| `agents-api` | 8000 | This service — agent orchestration and LLM routing |
-| `semantic-search-api` | 8001 | Optional — vector search over indexed documents |
-| `rag-api` | 8002 | Optional — retrieval-augmented generation pipeline |
+| Service               | Port | Role                                               |
+| --------------------- | ---- | -------------------------------------------------- |
+| `agents-api`          | 8000 | This service — agent orchestration and LLM routing |
+| `semantic-search-api` | 8001 | Optional — vector search over indexed documents    |
+| `rag-api`             | 8002 | Optional — retrieval-augmented generation pipeline |
 
 > `semantic-search-api` and `rag-api` are separate microservices in this portfolio. `agents-api` works standalone without them; health checks will report `degraded` on `external_services` if they are not running.
 
@@ -125,25 +125,25 @@ agents-api/
 
 ### Agent Endpoints
 
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/agent/query` | Single-agent ReAct reasoning loop |
+| Method | Path           | Description                                      |
+| ------ | -------------- | ------------------------------------------------ |
+| `POST` | `/agent/query` | Single-agent ReAct reasoning loop                |
 | `POST` | `/agent/multi` | Multi-agent planner → worker → reviewer workflow |
-| `GET` | `/agent/tools` | List all available tools for agent execution |
-| `GET` | `/agent/trace` | Debug — inspect the last agent run trace |
+| `GET`  | `/agent/tools` | List all available tools for agent execution     |
+| `GET`  | `/agent/trace` | Debug — inspect the last agent run trace         |
 
 ### Operational Endpoints
 
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/ping` | Lightweight liveness check (for load balancers) |
-| `GET` | `/health` | Comprehensive health report with per-component status |
-| `GET` | `/diagnostics` | Deep system analysis with API tests and benchmarks |
-| `GET` | `/metrics` | Prometheus-style metrics for monitoring dashboards |
-| `GET` | `/debug/config` | Configuration introspection with masked secrets |
-| `POST` | `/debug/cache/clear` | Clear the semantic cache |
-| `GET` | `/debug/router/stats` | Model router usage statistics |
-| `GET` | `/debug/router/health` | Model router health status |
+| Method | Path                   | Description                                           |
+| ------ | ---------------------- | ----------------------------------------------------- |
+| `GET`  | `/ping`                | Lightweight liveness check (for load balancers)       |
+| `GET`  | `/health`              | Comprehensive health report with per-component status |
+| `GET`  | `/diagnostics`         | Deep system analysis with API tests and benchmarks    |
+| `GET`  | `/metrics`             | Prometheus-style metrics for monitoring dashboards    |
+| `GET`  | `/debug/config`        | Configuration introspection with masked secrets       |
+| `POST` | `/debug/cache/clear`   | Clear the semantic cache                              |
+| `GET`  | `/debug/router/stats`  | Model router usage statistics                         |
+| `GET`  | `/debug/router/health` | Model router health status                            |
 
 ---
 
@@ -151,28 +151,28 @@ agents-api/
 
 ### Core
 
-| Package | Purpose |
-|---------|---------|
-| `fastapi` | Web framework and request routing |
-| `uvicorn[standard]` | ASGI server |
-| `pydantic` + `pydantic-settings` | Data validation and environment config |
-| `python-dotenv` | `.env` file loading |
-| `httpx` | Async HTTP client (tool calls to external services) |
-| `openai` | OpenAI async SDK used by `OpenAIProvider` |
-| `numpy` | Vector math for semantic cache similarity scoring |
+| Package                          | Purpose                                             |
+| -------------------------------- | --------------------------------------------------- |
+| `fastapi`                        | Web framework and request routing                   |
+| `uvicorn[standard]`              | ASGI server                                         |
+| `pydantic` + `pydantic-settings` | Data validation and environment config              |
+| `python-dotenv`                  | `.env` file loading                                 |
+| `httpx`                          | Async HTTP client (tool calls to external services) |
+| `openai`                         | OpenAI async SDK used by `OpenAIProvider`           |
+| `numpy`                          | Vector math for semantic cache similarity scoring   |
 
 ### Shared Library
 
-| Package | Source |
-|---------|--------|
+| Package          | Source                                                                                        |
+| ---------------- | --------------------------------------------------------------------------------------------- |
 | `ai-service-kit` | Editable install from `../ai-service-kit` — provides health, logging, diagnostics, embeddings |
 
 ### Dev / Test
 
-| Package | Purpose |
-|---------|---------|
-| `pytest` | Test runner |
-| `httpx` | Also used by `TestClient` in tests |
+| Package  | Purpose                            |
+| -------- | ---------------------------------- |
+| `pytest` | Test runner                        |
+| `httpx`  | Also used by `TestClient` in tests |
 
 ### Optional Cloud Logging (production)
 
